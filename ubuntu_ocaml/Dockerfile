@@ -6,6 +6,7 @@ MAINTAINER Tom Ridge
 # basic packages
 RUN apt-get -y update
 RUN apt-get -y install sudo pkg-config git build-essential m4 software-properties-common aspcud unzip curl libx11-dev
+RUN chmod u+s /usr/bin/sudo
 
 # where is this used?
 ADD opam-installext /usr/bin/opam-installext
@@ -30,7 +31,11 @@ RUN opam init -a -y
 
 # opam packages
 RUN opam switch 4.01.0
-RUN opam install ocamlfind sha
+RUN opam install ocamlfind sha cppo cmdliner fd-send-recv
 
 # link in directories - in Makefile
 RUN echo "eval `opam config env`" >> ~/.bashrc
+RUN echo "export PATH=/tmp/l/bitbucket/fs/fs_test:$PATH" >> ~/.bashrc
+
+# switch to root, just in case need to fix things
+USER root
