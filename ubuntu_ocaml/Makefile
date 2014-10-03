@@ -21,10 +21,11 @@ CREATE_USER_COMMAND = \
 build_image: FORCE
 	sudo docker build -t="$(IMG)" .
 
-LOCALDIR=/tmp/l/bitbucket/fs
+# LOCALDIR=/tmp/l/bitbucket/fs
 
+# --privileged: https://github.com/docker/docker/issues/5254
 run_image: FORCE
-	sudo docker run -t -i $(MOUNTDIRS) $(IMG) /bin/bash 
+	sudo docker run --privileged -t -i $(MOUNTDIRS) $(IMG) /bin/bash 
 
 #	sudo docker run -t -i -v $(LOCALDIR):/srv $(IMG) /bin/bash -c '$(CREATE_USER_COMMAND) bash'
 

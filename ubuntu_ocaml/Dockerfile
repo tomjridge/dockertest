@@ -36,6 +36,10 @@ RUN opam install ocamlfind sha cppo cmdliner fd-send-recv
 # link in directories - in Makefile
 RUN echo "eval `opam config env`" >> ~/.bashrc
 RUN echo "export PATH=/tmp/l/bitbucket/fs/fs_test:$PATH" >> ~/.bashrc
+RUN echo "export fs_test=/tmp/l/bitbucket/fs/fs_test/fs_test" >> ~/.bashrc
+WORKDIR /tmp/l/bitbucket/fs
 
 # switch to root, just in case need to fix things
 USER root
+# ENV HOME /root
+# RUN echo "export PATH=/tmp/l/bitbucket/fs/fs_test:$PATH" >> ~/.bashrc
