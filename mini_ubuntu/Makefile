@@ -25,7 +25,10 @@ build_image: FORCE
 
 # --privileged: https://github.com/docker/docker/issues/5254
 run_image: FORCE
-	sudo docker run --privileged -t -i $(MOUNTDIRS) $(IMG) /bin/bash 
+	sudo docker run --privileged -t -i $(MOUNTDIRS) \
+	-e DISPLAY=$$DISPLAY \
+  -v /tmp/.X11-unix:/tmp/.X11-unix \
+	$(IMG) /bin/bash 
 
 #	sudo docker run -t -i -v $(LOCALDIR):/srv $(IMG) /bin/bash -c '$(CREATE_USER_COMMAND) bash'
 
