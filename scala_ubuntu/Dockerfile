@@ -35,6 +35,7 @@ RUN curl https://nixos.org/nix/install | sh
 RUN echo "if [ -e /home/opam/.nix-profile/etc/profile.d/nix.sh ]; then . /home/opam/.nix-profile/etc/profile.d/nix.sh; fi" >> .bashrc 
 RUN . /home/opam/.nix-profile/etc/profile.d/nix.sh && nix-channel --update && nix-env -i -A nixpkgs.ocaml_4_02_1 nixpkgs.ocamlPackages_4_02_1.findlib
 RUN . /home/opam/.nix-profile/etc/profile.d/nix.sh && nix-channel --update && nix-env -i -A nixpkgs.scala nixpkgs.sbt
+RUN . /home/opam/.nix-profile/etc/profile.d/nix.sh && sbt
 # # following have to happen after running and binding path
 # # RUN . /home/opam/.nix-profile/etc/profile.d/nix.sh
 # # RUN cd /tmp/l/github/super/p3
