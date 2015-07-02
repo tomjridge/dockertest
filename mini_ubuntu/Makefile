@@ -1,5 +1,5 @@
 
-IMG=tr61/mini_ubuntu
+IMG?=tr61/mini_ubuntu
 
 MOUNTDIRS=-v /tmp/l/github:/tmp/l/github -v /tmp/l/bitbucket:/tmp/l/bitbucket
 
