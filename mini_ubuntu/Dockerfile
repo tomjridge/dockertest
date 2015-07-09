@@ -2,13 +2,14 @@
 # with failing last few lines removed
 # 14.04 was failing to pull some packages from ubuntu security server (old?)
 # 14.10 is ok
-FROM ubuntu:12.04
+FROM ubuntu:14.10
 MAINTAINER Tom Ridge
 
 # basic packages
 RUN apt-get -y update
 RUN apt-get -y install  curl
 RUN chmod u+s /usr/bin/sudo
+
 
 # where is this used?
 #ADD opam-installext /usr/bin/opam-installext
