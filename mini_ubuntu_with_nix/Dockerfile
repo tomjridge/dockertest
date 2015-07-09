@@ -1,8 +1,7 @@
 # taken from https://github.com/avsm/docker-opam/blob/master/scripts/ubuntu-trusty/Dockerfile
 # with failing last few lines removed
-# 14.04 was failing to pull some packages from ubuntu security server (old?)
-# 14.10 is ok
-FROM ubuntu:12.04
+# 14.04 was failing to pull some packages from ubuntu security server
+FROM ubuntu:14.10
 MAINTAINER Tom Ridge
 
 # basic packages
@@ -31,3 +30,10 @@ ENV OPAMVERBOSE 1
 ENV OPAMYES 1
 WORKDIR /home/opam
 
+RUN curl https://nixos.org/nix/install | sh
+RUN echo "if [ -e /home/opam/.nix-profile/etc/profile.d/nix.sh ]; then . /home/opam/.nix-profile/etc/profile.d/nix.sh; fi" >> .bashrc 
+RUN . /home/opam/.nix-profile/etc/profile.d/nix.sh && nix-channel --update && nix-env -i -A nixpkgs.ocaml_4_02_1 nixpkgs.ocamlPackages_4_02_1.findlib
+# following have to happen after running and binding path
+# RUN . /home/opam/.nix-profile/etc/profile.d/nix.sh
+# RUN cd /tmp/l/github/super/p3
+# RUN nix-build
