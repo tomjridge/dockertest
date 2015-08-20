@@ -7,7 +7,7 @@ MAINTAINER Tom Ridge
 
 # basic packages
 RUN apt-get -y update
-RUN apt-get -y install  curl
+RUN apt-get -y install  curl wget
 RUN apt-get -y install  sudo
 RUN chmod u+s /usr/bin/sudo
 RUN sudo apt-get install bzip2

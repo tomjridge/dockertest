@@ -10,7 +10,8 @@ RUN useradd -m -g users -G wheel -s /bin/bash opam
 RUN passwd -l opam
 # RUN pacman -Su
 RUN pacman -Syy
-RUN pacman --noconfirm -S sudo
+RUN pacman -Syu
+RUN pacman --noconfirm -S sudo wget
 ADD opamsudo /etc/sudoers.d/opam
 RUN chmod 440 /etc/sudoers.d/opam
 RUN chown root:root /etc/sudoers.d/opam
