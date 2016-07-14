@@ -10,6 +10,7 @@ RUN apt-get -y update
 RUN apt-get -y install  curl
 RUN apt-get -y install  bzip2
 RUN apt-get -y install  libdigest-sha-perl
+RUN apt-get -y install git
 RUN apt-get -y install sudo
 RUN chmod u+s /usr/bin/sudo
 
@@ -37,9 +38,16 @@ WORKDIR /home/opam
 RUN echo dummy to force rebuild
 RUN curl https://nixos.org/nix/install | sh
 RUN echo "if [ -e /home/opam/.nix-profile/etc/profile.d/nix.sh ]; then . /home/opam/.nix-profile/etc/profile.d/nix.sh; fi" >> .bashrc 
-RUN . /home/opam/.nix-profile/etc/profile.d/nix.sh && nix-channel --update && nix-env -i -A nixpkgs.ocaml nixpkgs.ocamlPackages.findlib
-RUN . /home/opam/.nix-profile/etc/profile.d/nix.sh && nix-channel --update && nix-env -i -A nixpkgs.scala nixpkgs.sbt
-RUN . /home/opam/.nix-profile/etc/profile.d/nix.sh && sbt
+RUN . /home/opam/.nix-profile/etc/profile.d/nix.sh && \
+    nix-channel --update && \
+    nix-env -i -A nixpkgs.ocaml nixpkgs.ocamlPackages.findlib
+RUN . /home/opam/.nix-profile/etc/profile.d/nix.sh && nix-channel --update && \
+    nix-env -i -A nixpkgs.scala nixpkgs.sbt nixpkgs.jdk 
+# RUN . /home/opam/.nix-profile/etc/profile.d/nix.sh && sbt
+RUN echo dummy to force rebuild
+RUN git clone https://github.com/tomjridge/ci.git
+RUN curl -L -o amm https://git.io/vo4w5 && chmod +x amm # 
+RUN . /home/opam/.nix-profile/etc/profile.d/nix.sh && cd ci && ../amm ci.scala
 # # following have to happen after running and binding path
 # # RUN . /home/opam/.nix-profile/etc/profile.d/nix.sh
 # # RUN cd /tmp/l/github/super/p3
