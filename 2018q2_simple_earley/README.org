@@ -1,0 +1,14 @@
+this is just to try out the standard docker images at 
+https://hub.docker.com/r/ocaml/opam/
+
+see "using the containers"
+
+To build an environment for the Jane Street Core library on the latest stable OCaml, a simple Dockerfile looks like this:
+
+FROM ocaml/opam
+RUN opam depext -i core
+
+You can build and use this image locally for development by saving the Dockerfile and:
+
+docker build -t ocaml-core .
+docker run -ti ocaml-core bash

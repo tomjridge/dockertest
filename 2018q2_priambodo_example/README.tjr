@@ -1,0 +1,16 @@
+THIS IS NOT A PROPER MAKEFILE
+
+all:
+	sudo docker build -t haversiner .
+
+pre_all:
+	mkdir tmp
+	cp Dockerfile tmp
+	cd tmp && git clone https://github.com/bobbypriambodo/haversiner.git
+	cd haversiner
+
+clean: 
+	rm -rf tmp
+
+
+IT DOESN'T SEEM TO WORK :(
