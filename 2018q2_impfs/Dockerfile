@@ -1,4 +1,4 @@
-# NOTE maybe add a "RUN echo ..." to force a rebuild
+# NOTE maybe add a "RUN echo ..." to force a rebuild, or --no-cache
 
 # FROM ocaml/opam:ubuntu - latest doesn't work due to problems with ppx_deriving deps
 FROM ocaml/opam:ubuntu-17.04_ocaml-4.04.2 
