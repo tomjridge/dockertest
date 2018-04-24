@@ -31,6 +31,12 @@ RUN eval `opam config env` && make -C path_resolution
 
 
 RUN git clone -b dev https://github.com/tomjridge/tjr_btree.git
-RUN eval `opam config env` && make -C tjr_btree all install
+RUN eval `opam config env` && make -C tjr_btree 
+
+
+# run some examples and tests
+RUN eval `opam config env` && make -C tjr_btree/test_bin all run_tests 
+
+RUN eval `opam config env` && make -C tjr_btree/examples all run_examples
 
 
