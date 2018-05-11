@@ -12,3 +12,6 @@ You can build and use this image locally for development by saving the Dockerfil
 
 docker build -t ocaml-core .
 docker run -ti ocaml-core bash
+
+
+tjr: currently using tmp as the name of the container
